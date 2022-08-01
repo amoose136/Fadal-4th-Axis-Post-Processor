@@ -4,7 +4,7 @@ A utility to post process the gcode output of Fusion360/HSMworks so it works on 
 ## Explanation
 Post process code generated with HSMWorks/Fusion360 using the 'Haas with A axis' post so it's usable with a Fadal with A axis.
 
-This post will not generate the coordinates for the A-axis correctly according to what the Fadal is expecting. On a Fadal the A-axis doesn't rotate the direction that would be the shortest distance from the current coordinate to the desired coordinate as you would expect. Instead the negative sign doesn't mean a negative coordinate, instead it means rotate the chuck clockwise and a positive number after the A means rotate the chuck counterclockwise. This script will go through every A callout and see if it needs to be positive or negative or not.
+The fadal post built into HSMworks refuses to generate if you have a 4th axis operation. The "Haas with A-axis" post will not generate the correct coordinates for the A-axis according to what the Fadal is expecting. On a Fadal, the A-axis doesn't rotate the direction that would be the shortest distance from the current coordinate to the desired coordinate as one may expect. Instead the negative sign doesn't mean a negative coordinate, instead it means rotate the chuck clockwise and a positive number after the A means rotate the chuck counter-clockwise. This script will go through every A callout and see if it needs to be positive or negative or not.
 
 ## Usage
 Generate codes you want in Solidworks with HSMworks installed or Fusion360 and then use the "Haas with A Axis" post to make the input nc codes.
