@@ -9,6 +9,7 @@ if __name__ == '__main__':
     parser.add_argument('--fnames',type=str,nargs='+',action='store',help='Choose the name of the output')
     parser.add_argument('--directory',type=str,nargs='+',dest='dir',action='store',help='Output gcode in directory specified instead of next to input files.')
     args=parser.parse_args()
+    first_line_corrected=False
     o_filenames=[]
     i_filenames=copy(args.files) #must not be none
     # Handle the star operator (Windows is not as good as shell in this regard) as an input. IE resolve to all the nc files in the directory
@@ -43,18 +44,20 @@ if __name__ == '__main__':
                 input = f.readlines()
                 input = [i.strip() for i in input]
                 length=len(input)
+                print(length)
                 prog_len=0
                 old_coord=0
                 for number, line in enumerate(input):
                     if number>length-13:
                         break
                     words = line.split()
-                    if number==length-12:
+                    if number==length-14:
                         prog_len=int(words[0][1:])
                     for i,word in enumerate(words):
-                        if word == "N10":
+                        if word == "N10" and first_line_corrected==False:
                             fout.write("N10 G0G17G40G49G70G80G90G98")
                             words=[]
+                            first_line_corrected=True
                             break
                         if word[0]=='A':
                             coord=float(word[1:])
