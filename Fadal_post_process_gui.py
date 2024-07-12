@@ -90,7 +90,7 @@ class GCodePostProcessor(QWidget):
         self.initUI()
 
     def initUI(self):
-        self.setWindowTitle('GCode Post-Processor')
+        self.setWindowTitle('Fadal 4th Axis GCode Post-Processor')
 
         layout = QVBoxLayout()
 
